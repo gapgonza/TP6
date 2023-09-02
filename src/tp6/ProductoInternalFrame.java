@@ -104,6 +104,11 @@ private Producto prodEncontrado=null;
         });
 
         jCrubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comestible", "Limpieza", "Perfumería" }));
+        jCrubro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCrubroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -276,6 +281,10 @@ private Producto prodEncontrado=null;
             JOptionPane.showMessageDialog(this, "No hay producto para borrar");
         }
     }//GEN-LAST:event_jBeliminarActionPerformed
+
+    private void jCrubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCrubroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCrubroActionPerformed
 private void limpiar(){
 jTcodigo.setText("");
         jTDescripcion.setText("");

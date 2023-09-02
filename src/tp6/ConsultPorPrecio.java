@@ -7,14 +7,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Gonza
  */
 public class ConsultPorPrecio extends javax.swing.JInternalFrame {
-    private DefaultTableModel tablaPrecio=new DefaultTableModel();
+
+    private DefaultTableModel tablaPrecio = new DefaultTableModel();
+
     /**
      * Creates new form ConsultPorPrecio
      */
     public ConsultPorPrecio() {
         initComponents();
         armarcabecera();
-        
+
     }
 
     /**
@@ -42,6 +44,12 @@ public class ConsultPorPrecio extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Entre    $");
 
+        jtPrecioMenor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtPrecioMenorKeyReleased(evt);
+            }
+        });
+
         jLabel3.setText("Y");
 
         jtPrecios.setModel(new javax.swing.table.DefaultTableModel(
@@ -67,18 +75,18 @@ public class ConsultPorPrecio extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(21, 21, 21)
                         .addComponent(jtPrecioMenor, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
+                        .addGap(39, 39, 39)
                         .addComponent(jtPrecioMayor, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 95, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(132, 132, 132)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,6 +107,31 @@ public class ConsultPorPrecio extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jtPrecioMenorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioMenorKeyReleased
+        borrarLista();
+        try {
+            int menor = Integer.parseInt(jtPrecioMenor.getText());
+            int mayor = Integer.parseInt(jtPrecioMayor.getText());
+            for (Producto pro : Menu_General.lista) {
+                if (pro.getPrecio() > menor && pro.getPrecio() < mayor) {
+                    tablaPrecio.addRow(new Object[]{
+                        pro.getCodigo(),
+                        pro.getDescripcion(),
+                        pro.getPrecio(),
+                        pro.getRubro(),
+                        pro.getStock()
+                    });
+                }
+            }
+        }catch(NumberFormatException e){
+            if(jtPrecioMenor.getText()== null){
+                jtPrecioMenor.setText("0");
+            }else if(jtPrecioMayor.getText()==null){
+                jtPrecioMayor.setText("0");
+            }
+        }
+    }//GEN-LAST:event_jtPrecioMenorKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -109,12 +142,16 @@ public class ConsultPorPrecio extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtPrecioMenor;
     private javax.swing.JTable jtPrecios;
     // End of variables declaration//GEN-END:variables
-    
-    private void armarcabecera(){
+
+    private void armarcabecera() {
         tablaPrecio.addColumn("Codigo");
         tablaPrecio.addColumn("Descripcion");
         tablaPrecio.addColumn("Precio");
         tablaPrecio.addColumn("Stock");
         jtPrecios.setModel(tablaPrecio);
+    }
+
+    private void borrarLista() {
+
     }
 }

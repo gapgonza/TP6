@@ -42,7 +42,6 @@ public class ConsultasPorRubro extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Corbel Light", 1, 18)); // NOI18N
         jLabel3.setText("Lista de Productos por Rubro");
 
-        jcRubr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comestible", "Limpieza", "Perfumeria" }));
         jcRubr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcRubrActionPerformed(evt);
@@ -172,7 +171,7 @@ public class ConsultasPorRubro extends javax.swing.JInternalFrame {
         tabc.addElement("Seleccionar");
         tabc.addElement("Comestible");
         tabc.addElement("Limpieza");
-        tabc.addElement("Perfumeria");
+        tabc.addElement("Perfumería");
         jcRubr.setModel(tabc);
     }
     

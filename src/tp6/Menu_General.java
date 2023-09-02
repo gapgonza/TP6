@@ -17,6 +17,7 @@ public static TreeSet<Producto> lista=new TreeSet<>();
      */
     public Menu_General() {
         initComponents();
+        cargarProductos();
     }
 
     /**
@@ -180,6 +181,15 @@ public static TreeSet<Producto> lista=new TreeSet<>();
                 new Menu_General().setVisible(true);
             }
         });
+    }
+    
+    public void cargarProductos(){
+        lista.add(new Producto(1, "Rollos De Cocina Check 20,7x20cm 3u", 558.88, 12, "Limpieza"));
+        lista.add(new Producto(2, "Limpiador De Baño Mr Músculo En Crema Citrus 450ml", 514.50, 12, "Limpieza"));
+        lista.add(new Producto(3, "Canasta Líquida Para Inodoro Glade Brisa De Las Cumbres Repuesto 50ml", 626.85, 12, "Limpieza"));
+        lista.add(new Producto(10, "Aceite De Girasol Natura 1,5 Lt ", 610.53, 20, "Comestible"));
+        lista.add(new Producto(11, "Mayonesa Natura 500 Cc", 360, 12, "Comestible"));
+        lista.add(new Producto(12, "Azucar Check Comun Tipo A 1kg ", 699, 12, "Comestible"));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
