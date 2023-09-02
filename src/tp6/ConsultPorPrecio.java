@@ -50,6 +50,12 @@ public class ConsultPorPrecio extends javax.swing.JInternalFrame {
             }
         });
 
+        jtPrecioMayor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtPrecioMayorKeyReleased(evt);
+            }
+        });
+
         jLabel3.setText("Y");
 
         jtPrecios.setModel(new javax.swing.table.DefaultTableModel(
@@ -108,7 +114,7 @@ public class ConsultPorPrecio extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtPrecioMenorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioMenorKeyReleased
-        borrarLista();
+        borrarEscritura();
         try {
             int menor = Integer.parseInt(jtPrecioMenor.getText());
             int mayor = Integer.parseInt(jtPrecioMayor.getText());
@@ -118,7 +124,6 @@ public class ConsultPorPrecio extends javax.swing.JInternalFrame {
                         pro.getCodigo(),
                         pro.getDescripcion(),
                         pro.getPrecio(),
-                        pro.getRubro(),
                         pro.getStock()
                     });
                 }
@@ -131,6 +136,30 @@ public class ConsultPorPrecio extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jtPrecioMenorKeyReleased
+
+    private void jtPrecioMayorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioMayorKeyReleased
+         borrarEscritura();
+        try {
+            int menor = Integer.parseInt(jtPrecioMenor.getText());
+            int mayor = Integer.parseInt(jtPrecioMayor.getText());
+            for (Producto pro : Menu_General.lista) {
+                if (pro.getPrecio() >= menor && pro.getPrecio() <= mayor) {
+                    tablaPrecio.addRow(new Object[]{
+                        pro.getCodigo(),
+                        pro.getDescripcion(),
+                        pro.getPrecio(),
+                        pro.getStock()
+                    });
+                }
+            }
+        }catch(NumberFormatException e){
+            if(jtPrecioMenor.getText()== null){
+                jtPrecioMenor.setText("0");
+            }else if(jtPrecioMayor.getText()==null){
+                jtPrecioMayor.setText("0");
+            }
+        }
+    }//GEN-LAST:event_jtPrecioMayorKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -151,7 +180,10 @@ public class ConsultPorPrecio extends javax.swing.JInternalFrame {
         jtPrecios.setModel(tablaPrecio);
     }
 
-    private void borrarLista() {
-
+    private void borrarEscritura(){
+        int b=tablaPrecio.getRowCount()-1;
+        for(;b>=0;b--){
+            tablaPrecio.removeRow(b);
+        }
     }
 }

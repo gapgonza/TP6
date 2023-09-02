@@ -86,6 +86,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtPrecioMayor">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtPrecioMayorKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
